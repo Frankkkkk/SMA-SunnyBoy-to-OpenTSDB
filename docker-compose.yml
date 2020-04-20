@@ -1,0 +1,11 @@
+version: '3'
+services:
+    sma_otsdb_importer:
+        build: .
+        restart: always
+        environment:
+            SMA_SUNNYBOY_HOST: 192.168.10.220
+            OPEN_TSDB_HOST: 192.168.10.52:4242
+            OPEN_TSDB_METRIC: energy.electricity.cumulative
+            OPEN_TSDB_POINT_NAME: solar.roof
+
