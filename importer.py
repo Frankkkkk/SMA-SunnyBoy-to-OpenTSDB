@@ -29,9 +29,10 @@ def send_data_to_opentsdb(data):
                    "point": OPEN_TSDB_POINT_NAME,
                 }
             }
-            # XXX send an array instead of scalars
-            r = requests.post('http://{OPEN_TSDB_HOST}/api/put', json=pt)
-        except:
+            r = requests.post(f'http://{OPEN_TSDB_HOST}/api/put', json=pt)
+            print(pt)
+        except Exception as e:
+            print(e)
             print(f'No data for pt {d}. Maybe inverter was down')
 
 
@@ -39,6 +40,7 @@ if __name__ == '__main__':
     while True:
         e = get_data_from_sunnyboy('192.168.10.220')
         send_data_to_opentsdb(e)
+        print('wl slp')
         time.sleep(60 * 60)
 
 # vim: set ts=4 sw=4 et:
